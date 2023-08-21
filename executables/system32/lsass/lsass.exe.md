@@ -145,6 +145,21 @@
 
 ![image](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/2b12ae1d-335d-4ae4-904d-bddf2db1fede)
 
+## LSASS microsoft diagrams:
+
+ref: https://learn.microsoft.com/en-us/windows-server/security/windows-authentication/credentials-processes-in-windows-authentication
+
+![image](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/b11e4faa-22ef-4556-867f-9c1b80d708fa)
+
+![image](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/a1978a1f-37ff-4092-95fb-f54e8f7d177c)
+
+![image](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/ee0dc0b7-223b-48f6-a52f-e9cc7d3a5b69)
+
+Windows Hello:
+ref:https://learn.microsoft.com/en-us/windows/security/identity-protection/hello-for-business/hello-how-it-works-authentication
+
+![image](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/b6e6770b-4b6d-49b5-9efe-c11fd47f0fb1)
+
 
 ## LSASS to a 5-year-old:
 ![lsass_winlogon](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/5decfb34-122b-4b63-b2e7-4214df16744c)
