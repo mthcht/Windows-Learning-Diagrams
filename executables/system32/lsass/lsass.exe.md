@@ -141,5 +141,10 @@
 
 ## LSASS detailed diagram:
 
+![image](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/e05b92e6-d3f0-4b41-9567-9a01c7e3dce2)
+
+![image](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/2b12ae1d-335d-4ae4-904d-bddf2db1fede)
+
+
 ## LSASS to a 5-year-old:
 ![lsass_winlogon](https://github.com/mthcht/Windows-Learning-Diagrams/assets/75267080/5decfb34-122b-4b63-b2e7-4214df16744c)
