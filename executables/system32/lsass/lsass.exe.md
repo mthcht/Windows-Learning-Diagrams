@@ -9,9 +9,13 @@
   Winlogon.exe (User Interface)
        |
   LSASS.exe (Local Security Authority Subsystem Service)
-       |-----------------> Kerberos/NTLM (Authentication Protocols)
-       |                  |-----> Domain Controller (If Domain Account)
-       |                  |-----> Local SAM Database (If Local Account)
+       |-----------------> Authentication Protocols
+       |                  |-----> Kerberos
+       |                  |       |-----> Domain Controller (If Domain Account)
+       |                  |       |-----> Local SAM Database (If Local Account)
+       |                  |-----> NTLM
+       |                  |       |-----> Domain Controller (If Domain Account)
+       |                  |       |-----> Local SAM Database (If Local Account)
        |-----------------> LSA (Local Security Authority)
        |
   SAM (Security Account Manager)
@@ -21,10 +25,14 @@
   Compare Hashed Password
        |
   Generate Access Token
+       |-----> Include User's SID
+       |-----> Include Group SIDs
+       |-----> Include Privileges
        |
   Create User Session
        |
   Access Granted/Denied (Logon or Error Message)
+
 ```
 
 ### Password Change:
@@ -35,7 +43,7 @@
   Application (Change Password Dialog)
        |
   LSASS.exe (Local Security Authority Subsystem Service)
-       |-----------------> Kerberos/NTLM (Authentication Protocols)
+       |-----------------> Authentication Protocols
        |                  |-----> Validate Old Password
        |                  |-----> Generate New Password Hash
        |-----------------> LSA (Local Security Authority)
@@ -45,8 +53,11 @@
   Update Password Hash in Database
        |
   Synchronize with Domain (If Domain Account)
+       |-----> Notify Domain Controller
+       |-----> Update in Active Directory
        |
   Confirmation/Error Message
+
 ```
 
 ### Access Token Creation:
@@ -57,16 +68,19 @@
   LSASS.exe (Local Security Authority Subsystem Service)
        |
   Create Access Token
-       |-----------------> Include User's SID (Security Identifier)
-       |-----------------> Include Group SIDs (Security Groups)
-       |-----------------> Include Privileges (User Rights)
-       |-----------------> Include Logon Session Data
+       |-----> Include User's SID (Security Identifier)
+       |-----> Include Group SIDs (Security Groups)
+       |-----> Include Privileges (User Rights)
+       |-----> Include Logon Session Data
+       |-----> Include Other Attributes (e.g., Session Type)
        |
   Assign to Process (e.g., Explorer.exe)
        |
   Process Runs with User's Security Context
        |
   Monitor and Manage User Session
+       |-----> Handle Permissions
+       |-----> Monitor Session Activities
 ```
 
 ### Kerberos Authentication (in a domain environment):
@@ -80,14 +94,19 @@
        |
   Kerberos.dll (Kerberos Protocol)
        |-----> AS Request to Domain Controller (Authentication Service)
+       |       |-----> Include Pre-Authentication Data
        |       <---- AS Response (TGT - Ticket Granting Ticket)
        |
        |-----> TGS Request to Domain Controller with TGT (Ticket Granting Service)
+       |       |-----> Include Service Request Information
        |       <---- TGS Response (Service Ticket)
        |
   Validate Service Ticket
        |
   Generate Access Token
+       |-----> Include User's SID
+       |-----> Include Group SIDs
+       |-----> Include Privileges
        |
   Create User Session
        |
@@ -107,9 +126,13 @@
        |-----------------> Custom Verification Process (e.g., Biometrics, Smart Card)
        |                  |-----> Hardware/Software Interaction
        |                  |-----> Custom Security Checks
+       |                  |-----> Additional Verification Steps (e.g., Multi-Factor)
        |                  <---- Verification Result (Success/Failure)
        |
   Generate Access Token (If Successful)
+       |-----> Include User's SID
+       |-----> Include Group SIDs
+       |-----> Include Privileges
        |
   Create User Session (If Successful)
        |
